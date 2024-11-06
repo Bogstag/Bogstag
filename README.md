@@ -1,6 +1,6 @@
 # Hi there 👋
 
-![My Github Metrics](.\github-metrics.svg)
+![My Github Metrics](github-metrics.svg)
 
 <!--
 <picture>
