@@ -29,7 +29,7 @@ jobs:
                   repositories_affiliations: owner, collaborator, organization_member
 
                   plugin_achievements_ignored: manager
-                  plugin_achievements: yes
+                  plugin_achievements: no
 
                   plugin_gists: yes
 
