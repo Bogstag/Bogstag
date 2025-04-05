@@ -28,7 +28,7 @@ jobs:
                   repositories_batch: 70
                   repositories_affiliations: owner, collaborator, organization_member
 
-                  plugin_achievements_ignored: projects
+                  plugin_achievements_ignored: manager
                   plugin_achievements: yes
 
                   plugin_gists: yes
