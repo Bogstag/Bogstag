@@ -5,51 +5,198 @@ on:
   schedule: [{ cron: "0 0 * * 0" }]
   # Lines below let you run workflow manually and on each commit
   workflow_dispatch:
-  push: { branches: ["master", "main"] }
+  workflow_call:
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
     steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          # Your GitHub token
-          # The following scopes are required:
-          #  - public_access (default scope)
-          # The following additional scopes may be required:
-          #  - read:org      (for organization related metrics)
-          #  - read:user     (for user related data)
-          #  - read:packages (for some packages related data)
-          #  - repo          (optional, if you want to include private repositories)
-          token: ${{ secrets.METRICS_TOKEN }}
-          filename: github-metrics.svg
-          user: Bogstag
-          template: classic
-          config_timezone: Europe/Stockholm
-          config_output: svg
-          base: header, activity, community, repositories, metadata
-          base_indepth: yes
-          repositories: 200
-          repositories_batch: 70
-          repositories_affiliations: owner, collaborator, organization_member
-          plugin_achievements: yes
-          plugin_achievements_display: detailed
-          plugin_achievements_secrets: yes
-          plugin_achievements_threshold: C
-          plugin_habits_charts: no
-          plugin_habits_days: 28
-          plugin_habits_facts: yes
-          plugin_habits_from: 400
-          plugin_habits_languages_limit: 12
-          plugin_habits_trim: yes
-          plugin_habits: yes
-          plugin_languages: yes
-          plugin_languages_analysis_timeout: 30
-          plugin_languages_categories: markup, programming, data, prose
-          plugin_languages_details: percentage
-          plugin_languages_limit: 12
-          plugin_lines: yes
-          plugin_starlists: no
-          plugin_topics_mode: icons
-          plugin_topics: yes
-          plugin_traffic: yes
-          plugin_projects: no
+    - uses: actions/checkout@v4
+      with:
+        ref: stats
+        fetch-depth: 0
+
+    - name: 🧱 Core
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new core metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.core.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+
+    - name: 🗃️ Base content
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new base metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.base.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+        # Input:
+        base_indepth: yes
+        base: header, activity, community, repositories, metadata
+        repositories_affiliations: owner, collaborator, organization_member
+        repositories_batch: 70
+        repositories: 200
+
+    - name: 🏆 Achievements
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new achievements metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.achievements.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+        # Input:
+        plugin_achievements: yes
+        plugin_achievements_display: detailed
+        plugin_achievements_secrets: yes
+        plugin_achievements_threshold: C
+
+    - name: 💡 Coding habits Mildly interesting facts
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new habits metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.habits.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+        # Input:
+        plugin_habits_charts: no
+        plugin_habits_days: 28
+        plugin_habits_facts: yes
+        plugin_habits_from: 400
+        plugin_habits_languages_limit: 12
+        plugin_habits_trim: yes
+        plugin_habits: yes
+
+    - name: 🈷️ Languages
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new languages metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.languages.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+        # Input:
+        plugin_languages: yes
+        plugin_languages_analysis_timeout: 30
+        plugin_languages_categories: markup, programming, data, prose
+        plugin_languages_details: percentage
+        plugin_languages_limit: 12
+
+    - name: 👨‍💻 Lines of code
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new lines metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.lines.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+        # Input:
+        plugin_lines: yes
+
+    - name: 📌 Starred topics
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new topics metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.topics.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+        # Input:
+        plugin_topics_mode: icons
+        plugin_topics: yes
+
+    - name: 🧮 Repositories traffic
+      uses: lowlighter/metrics@master # master or latest
+      if: ${{ success() || failure() }}
+      with:
+        committer_branch: stats #
+        committer_message: "[Auto] new traffic metrics generated" #
+        config_output: svg #
+        config_timezone: Europe/Stockholm #
+        delay: 120 #
+        filename: images/metrics.traffic.svg #
+        optimize: svg #
+        output_action: commit #
+        plugins_errors_fatal: yes #
+        template: classic #
+        token: ${{ secrets.METRICS_TOKEN }} #
+        user: Bogstag #
+        # Input:
+        plugin_traffic: yes
+
+      # - name: Base Template
+      # uses: lowlighter/metrics@master # master or latest
+      # if: ${{ success() || failure() }}
+      # with:
+        # committer_branch: stats #
+        # committer_message: "[Auto] new ** metrics generated" #
+        # config_output: svg #
+        # config_timezone: Europe/Stockholm #
+        # delay: 120 #
+        # filename: images/metrics.**.svg #
+        # optimize: svg #
+        # output_action: commit #
+        # plugins_errors_fatal: yes #
+        # template: classic #
+        # token: ${{ secrets.METRICS_TOKEN }} #
+        # user: Bogstag #
+        # Input:
