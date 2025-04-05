@@ -1,10 +1,31 @@
 # Hi there 👋
 
-![My Github Metrics](github-metrics.svg)
+<picture>
+  <img src="stats/images/general.svg" style="width: 350px" alt="My general stats">
+</picture>
+<picture>
+  <img src="stats/images/contributions.svg" style="width: 350px" alt="My Small Contributions">
+</picture>
+<picture>
+  <img src="stats/images/languages.svg" style="width: 350px" alt="My Languages">
+</picture>
+<picture>
+  <img src="stats/images/repositories.svg" style="width: 350px" alt="My Repositories">
+</picture>
+
+
+![Trophys](https://github-profile-trophy.vercel.app/?username=Bogstag&theme=dracula&column=5)
 
 <!--
+![My general stats](stats/images/general.svg)
+![My Small Contributions](stats/images/contributions.svg)
+![My Languages](stats/images/languages.svg)
+![My Repositories](stats/images/repositories.svg)
 <picture>
   <img src="/github-metrics.svg" alt="Metrics">
+</picture>
+<picture>
+  <img src="" style="width: 350px" alt="Metrics">
 </picture>
 **Bogstag/Bogstag** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
@@ -18,14 +39,4 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
-
-          plugin_starlists_languages: yes
-          plugin_starlists_limit_languages: 10
-          plugin_starlists_limit_repositories: 2
-          plugin_starlists_limit: 20
-          plugin_starlists_shuffle_repositories: yes
-          plugin_starlists: yes
-          plugin_stars_limit: 2
-          plugin_stars: yes
-          plugin_traffic: yes
 -->
