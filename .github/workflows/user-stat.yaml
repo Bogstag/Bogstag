@@ -1,0 +1,81 @@
+name: user-statistician
+
+on:
+  # Schedule updates (every week)
+  schedule: [{ cron: "0 0 * * 0" }]
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: stats
+
+    - name: Generate the general stats image
+      uses: cicirello/user-statistician@v1.24.0
+      with:
+        image-file: images/general.svg
+        include-title: false
+        custom-title: My GitHub Statistics
+        colors: dark
+        hide-keys: featured, sponsors, sponsoring, languages, contributions, repositories
+        commit-message: '[Auto] new general stats generated'
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Generate the repositories stats
+      uses: cicirello/user-statistician@v1.24.0
+      with:
+        image-file: images/repositories.svg
+        colors: dark
+        hide-keys: general, contributions, languages
+        commit-message: '[Auto] new repositories stats generated'
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Generate the contributions stats
+      uses: cicirello/user-statistician@v1.24.0
+      with:
+        image-file: images/contributions.svg
+        colors: dark
+        hide-keys: private, general, languages, repositories
+        commit-message: '[Auto] new contributions stats generated'
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Generate the languages distribution
+      uses: cicirello/user-statistician@v1.24.0
+      with:
+        image-file: images/languages.svg
+        colors: dark
+        hide-keys: general, contributions, repositories
+        commit-message: '[Auto] new languages distribution generated'
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Remember the keys
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/userstats.svg
+        include-title: true
+        custom-title: '' # Defaults to title pattern described earlier
+        small-title: false
+        featured-repository: '' # Defaults to nothing featured
+        max-languages: auto
+        language-repository-exclusions: '' # None excluded
+        animated-language-chart: false
+        language-animation-speed: 10
+        top-icon: default
+        colors: light
+        border-radius: 6
+        show-border: true
+        image-width: 0
+        hide-keys: '' # None hidden
+        category-order: general, repositories, contributions, languages
+        locale: en
+        fail-on-error: true
+        commit-and-push: true
+        commit-message: 'Automated change by https://github.com/cicirello/user-statistician'
