@@ -1,8 +1,8 @@
 # Hi there 👋
 
-![github-metric](stats/images/github-metrics.svg)
+![github-metric](images/github-metrics.svg)
 
-![My Languages](stats/images/languages.svg)
+![My Languages](images/languages.svg)
 
 ![Trophys](https://github-profile-trophy.vercel.app/?username=Bogstag&theme=dracula&column=5)
 
