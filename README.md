@@ -1,25 +1,14 @@
 # Hi there 👋
 
-<picture>
-  <img src="stats/images/general.svg" style="width: 350px" alt="My general stats">
-</picture>
-<picture>
-  <img src="stats/images/contributions.svg" style="width: 350px" alt="My Small Contributions">
-</picture>
-<picture>
-  <img src="stats/images/languages.svg" style="width: 350px" alt="My Languages">
-</picture>
-<picture>
-  <img src="stats/images/repositories.svg" style="width: 350px" alt="My Repositories">
-</picture>
+![github-metric](stats/images/github-metrics.svg)
 
+![My Languages](stats/images/languages.svg)
 
 ![Trophys](https://github-profile-trophy.vercel.app/?username=Bogstag&theme=dracula&column=5)
 
 <!--
 ![My general stats](stats/images/general.svg)
 ![My Small Contributions](stats/images/contributions.svg)
-![My Languages](stats/images/languages.svg)
 ![My Repositories](stats/images/repositories.svg)
 <picture>
   <img src="/github-metrics.svg" alt="Metrics">
